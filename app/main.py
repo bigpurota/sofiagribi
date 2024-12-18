@@ -11,8 +11,7 @@ from sklearn.metrics import (precision_score, recall_score, f1_score, accuracy_s
 
 # Загрузка данных
 data = pd.read_csv(
-    '/Users/purota/Documents/sofia_mushrooms_project/data/mushroom_cleaned.csv')
-data = data.drop(columns="cap-diameter")
+    'data/mushroom_cleaned.csv')
 st.subheader("Первые строки данных")
 st.write(data)
 
@@ -100,3 +99,9 @@ important_features = pd.DataFrame({
     'Importance': feature_importances[sorted_indices[:10]]
 })
 st.write(important_features)
+st.download_button(
+    label="скачать грибы",
+    data=data.to_csv(index=False),
+    file_name="data.csv",
+    mime="text/csv"
+)
